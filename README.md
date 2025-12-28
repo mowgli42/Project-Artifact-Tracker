@@ -2,6 +2,8 @@
 
 A web-based application for tracking projects with links to maps, resources, and proposal briefings. Built with Flask (Python) backend and vanilla JavaScript frontend, using SQLite for data persistence.
 
+<img width="1256" height="689" alt="Project Artifact Tracker" src="https://github.com/user-attachments/assets/9aac7b71-1daa-467c-80d9-a240873b746f" />
+
 ## Features
 
 - **CRUD Operations**: Create, read, update, and delete projects

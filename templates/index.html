@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Artifact Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Project Artifact Tracker</h1>
+            <button class="btn btn-primary" id="addProjectBtn">
+                <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor; display: inline-block; vertical-align: middle; margin-right: 4px;">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                Add Project
+            </button>
+        </header>
+
+        <div class="controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search projects..." class="search-input">
+            </div>
+        </div>
+
+        <div id="kanbanBoard" class="kanban-board">
+            <div class="kanban-column" data-status="Planning">
+                <div class="column-header">
+                    <h3>Planning</h3>
+                    <span class="column-count" id="count-planning">0</span>
+                </div>
+                <div class="column-content" id="column-planning">
+                    <!-- Projects will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="kanban-column" data-status="Active">
+                <div class="column-header">
+                    <h3>Active</h3>
+                    <span class="column-count" id="count-active">0</span>
+                </div>
+                <div class="column-content" id="column-active">
+                    <!-- Projects will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="kanban-column" data-status="On Hold">
+                <div class="column-header">
+                    <h3>On Hold</h3>
+                    <span class="column-count" id="count-onhold">0</span>
+                </div>
+                <div class="column-content" id="column-onhold">
+                    <!-- Projects will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="kanban-column" data-status="Completed">
+                <div class="column-header">
+                    <h3>Completed</h3>
+                    <span class="column-count" id="count-completed">0</span>
+                </div>
+                <div class="column-content" id="column-completed">
+                    <!-- Projects will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <p>No projects found. Click "Add Project" to get started.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Project -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Project</h2>
+                <span class="close">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </span>
+            </div>
+            <form id="projectForm">
+                <input type="hidden" id="projectId">
+                
+                <div class="form-group">
+                    <label for="projectName">Project Name *</label>
+                    <input type="text" id="projectName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDescription">Description</label>
+                    <textarea id="projectDescription" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectStatus">Status</label>
+                    <select id="projectStatus">
+                        <option value="Active">Active</option>
+                        <option value="Completed">Completed</option>
+                        <option value="On Hold">On Hold</option>
+                        <option value="Planning">Planning</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mapLink">Map Link</label>
+                    <input type="url" id="mapLink" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="resourcesLink">Resources Link</label>
+                    <input type="url" id="resourcesLink" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="proposalBriefingLink">Proposal Briefing Link</label>
+                    <input type="url" id="proposalBriefingLink" placeholder="https://...">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
+

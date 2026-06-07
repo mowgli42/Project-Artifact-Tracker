@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "Project_Artifact_Tracker",
+  "project_id": "b9d6f5c4-7bf0-4d62-a9cc-327d223e1695"
+}

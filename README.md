@@ -28,7 +28,17 @@ cd Project-Artifact-Tracker
 
 2. Install dependencies:
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
+```
+
+## Running tests
+
+```bash
+source .venv/bin/activate
+pytest
 ```
 
 ## Usage

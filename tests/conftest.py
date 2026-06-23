@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -10,18 +11,15 @@ if str(ROOT) not in sys.path:
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
-    import importlib
-    import os
-
     db_path = str(tmp_path / "test_projects.db")
-    monkeypatch.setattr("database.DB_NAME", db_path)
+    monkeypatch.setenv("PROJECTS_DB_PATH", db_path)
 
-    import database
+    for name in list(sys.modules):
+        if name in ("app", "database"):
+            del sys.modules[name]
 
-    importlib.reload(database)
     import app as app_module
 
-    importlib.reload(app_module)
     app_module.app.config["TESTING"] = True
 
     with app_module.app.test_client() as test_client:

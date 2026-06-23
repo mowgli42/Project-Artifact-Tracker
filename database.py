@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from typing import List, Dict, Optional
 
-DB_NAME = 'projects.db'
+DB_NAME = os.environ.get("PROJECTS_DB_PATH", "projects.db")
 
 def get_db_connection():
     """Create and return a database connection."""

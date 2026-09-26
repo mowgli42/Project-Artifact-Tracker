@@ -4,3 +4,7 @@
 *.db
 .beads-credential-key
 __pycache__/
+
+# Secrets (never commit private keys)
+*-key.pem
+*.key
